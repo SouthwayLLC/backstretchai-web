@@ -1,15 +1,25 @@
-generator client { provider = "prisma-client-js" }
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-enum LoadStatus { DRAFT QUOTED BOOKED DISPATCHED DELIVERED INVOICED CANCELED }
+enum LoadStatus {
+  DRAFT
+  QUOTED
+  BOOKED
+  DISPATCHED
+  DELIVERED
+  INVOICED
+  CANCELED
+}
 
 model Load {
   id          String     @id @default(cuid())
-  ref         String     @unique
+  ref         String     @unique // e.g. L-000001
   customer    String
   origin      String
   destination String
